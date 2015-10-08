@@ -92,3 +92,10 @@ All property definitions should include all possible property attributes.
 _**Note**: a new `nullable` and `nonnull` attributes should be added (to the end of the list) where it makes sense. See the `NS_ASSUME_NONNULL_BEGIN/NS_ASSUME_NONNULL_END` macro._
 
 Explicit is much better than implicit when it comes to property semantics.
+
+## Check invariants with NSAssert macros
+When your methods have required parameters you should always check their presence via `NSParameterAssert(...);` macro. These checks should be the first thing you do in a method body.
+
+_**Hint**: for C functions use an `NSCParameterAssert(...)` macro._
+
+When you write code you make numerous assumptions about the state of a surrounding system. Sometimes your assumptions are wrong. It's a good practice to fix your assumptions in code in a way of `NSAsserts` so you can get meaningful exceptions when your code breaks.
