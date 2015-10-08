@@ -37,3 +37,11 @@ For every separate object (class) in a project an Xcode group (yellow one) shoul
     │                                            
     └── SGMDuplicatesViewController.xcassets
 ```
+
+## Nib files naming convention
+On OS X you generally work with two types of nibs: view nibs and window nibs.
+
+* Imagine you have a view controller named `ASDMessagesViewController`. Its corresponding view nib should be named `ASDMessagesView`, dropping the 'Controller'
+ part.
+* Imagine you have a window controller named `ASDMainWindowController`. Its corresponding window nib should be named `ASDMainWindow`, dropping the 'Controller'
+ part.
