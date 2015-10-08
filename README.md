@@ -151,3 +151,12 @@ When you write code you make numerous assumptions about the state of a surroundi
 
 // Sometimes there is a need to inject localized strings in a dynamic way.
 ```
+
+## All views should be laid out via Auto Layout
+Since the Auto Layout introduction in OS X Lion (in 2011) I have not written a single -setFrame: call and never set an autoresizing mask. And so should you.
+
+When you initialize a view in code, pass `NSZeroRect` as a parameter to `-initWithFrame:` method:
+
+```objective-c
+NSView* const view = [[NSView alloc] initWithFrame: NSZeroRect];`
+```
