@@ -45,3 +45,6 @@ On OS X you generally work with two types of nibs: view nibs and window nibs.
  part.
 * Imagine you have a window controller named `ASDMainWindowController`. Its corresponding window nib should be named `ASDMainWindow`, dropping the 'Controller'
  part.
+
+## Prefer an old-school nibs to storyboards
+When building a complex application stick with an old-fashioned nib-based approach for building UI. It's much better to keep things separated and manageable than to put everything in one place.
