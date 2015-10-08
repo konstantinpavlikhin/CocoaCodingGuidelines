@@ -48,3 +48,6 @@ On OS X you generally work with two types of nibs: view nibs and window nibs.
 
 ## Prefer an old-school nibs to storyboards
 When building a complex application stick with an old-fashioned nib-based approach for building UI. It's much better to keep things separated and manageable than to put everything in one place.
+
+## Take advantage of a Base Internationalization feature
+When you need to localize static UI strings prefer to use Base Internationalization feature. Under no circumstances should you multiply the nib-files under different lproj-subdirectories! Base Internationalization approach is DRY. It also liberates you from the need to invent custom localized strings keys and makes manual strings injection unnecessary.
