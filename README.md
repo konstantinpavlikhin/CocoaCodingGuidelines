@@ -99,3 +99,55 @@ When your methods have required parameters you should always check their presenc
 _**Hint**: for C functions use an `NSCParameterAssert(...)` macro._
 
 When you write code you make numerous assumptions about the state of a surrounding system. Sometimes your assumptions are wrong. It's a good practice to fix your assumptions in code in a way of `NSAsserts` so you can get meaningful exceptions when your code breaks.
+
+## Canonical view controller implementation file structure
+
+```objective-c
+#pragma mark - Initialization
+
+// Various initializers go here.
+
+#pragma mark - Cleanup
+
+// The sole -dealloc method here.
+
+#pragma mark - SuperClass Overrides
+
+// Superclass method overrides go here.
+
+#pragma mark - Reactivity
+
+// Bindings and declarative logic of a ReactiveCocoa goes here.
+
+#pragma mark -
+
+// The sole -awakeFromNib goes here.
+
+#pragma mark - Interface Callbacks
+
+// IBActions from UI go here.
+
+#pragma mark - Lazy Initialization
+
+// Getters that perform a lazy objects initialization go here.
+
+#pragma mark - Public Methods
+
+// Public methods go here.
+
+#pragma mark - Private Methods
+
+// Private methods go here. Class can have a numerous 'Private Methods' sections, in which case they should be named like 'Private Methods | Group Name' and so on...
+
+#pragma mark - InformalProtocol Informal Protocol Implementation
+
+// Informal protocol implementation goes here.
+
+#pragma mark - SomeProtocol Protocol Implementation
+
+// Protocol implementation goes here.
+
+#pragma mark - Localization
+
+// Sometimes there is a need to inject localized strings in a dynamic way.
+```
