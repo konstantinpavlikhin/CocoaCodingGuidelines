@@ -12,3 +12,28 @@ _**Hint**: for personal projects and reusable components consider using abbrevia
 
 ## Use Interface Builder when making UI
 Views created and configured in code are understandable only to their authors. And only within the first two weeks after a commit. Utilize Interface Builder. Finally, the Auto Layout support is so good you no longer have to fight with the tool.
+
+## Hierarchical structure of a project files
+For every separate object (class) in a project an Xcode group (yellow one) should be created. These groups should be named after the corresponding objects minus the mandatory three-letter prefix.
+
+```
+┌──────────────────────────┐                      
+│ DuplicatesViewController │                      
+└───┬──────────────────────┘                      
+    │                                            
+    ├── SGMDuplicatesViewControllerDelegate.h     
+    │                                            
+    ├── SGMDuplicatesView.xib                     
+    │                                            
+    ├── SGMDuplicatesViewController.h             
+    │                                            
+    ├── SGMDuplicatesViewController+Private.h     
+    │                                            
+    ├── SGMDuplicatesViewController.m             
+    │                                            
+    ├── SGMDuplicatesViewController.strings       
+    │                                            
+    ├── SGMDuplicatesViewController.stringsdict   
+    │                                            
+    └── SGMDuplicatesViewController.xcassets
+```
