@@ -49,3 +49,28 @@ When building a complex application stick with an old-fashioned nib-based approa
 
 ## Take advantage of a Base Internationalization feature
 When you need to localize static UI strings prefer to use Base Internationalization feature. Under no circumstances should you multiply the nib-files under different lproj-subdirectories! Base Internationalization approach is DRY. It also liberates you from the need to invent custom localized strings keys and makes manual strings injection unnecessary.
+
+## Extensive usage of a `const` qualifier
+Every 'variable' that is not intended to be altered down the control flow should be declared as constant. It is much easier to reason about the algorithm when there are things that doesn't change under your very nose.
+
+```objective-c
+// Magic numbers should be const.
+const NSUInteger magicNumber = 42;
+
+// Notifications should be const.
+NSString* const KSPUsefulNotification = @"KSPUsefulNotification";
+
+// Any objects handles should be const.
+NSImage* const image = [NSImage imageNamed: @"NSActionTemplate"];
+
+// Intermediate state calculations should be const.
+const BOOL canMarkChatAsUnread = (clickedChatOrNil && [self canMarkChatAsUnread: clickedChatOrNil]);
+
+// Parameters should be const.
+[RACObserve(self, something) subscribeNext: ^(id* const something)
+{
+	// ...
+}];
+```
+
+Const all the things!
