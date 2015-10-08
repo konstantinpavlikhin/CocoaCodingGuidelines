@@ -81,3 +81,14 @@ Everything that may be typed should be typed.
 For every `NSViewController` subclass that you have you should re-declare its `representedObject` property type from `id` to some meaningful represented object class. Don't forget to add a `@dynamic representedObject;` to the implementation file.
 
 For every `NSTableCellView` subclass that you have you should re-declare its `objectValue` property type from `id` to some meaningful object value class. Don't forget to add a `@dynamic objectValue;` to the implementation file.
+
+## Property definitions should be explicit
+All property definitions should include all possible property attributes.
+
+```objective-c
+@property(readwrite, strong, nonatomic) ClassName* propertyName;
+```
+
+_**Note**: a new `nullable` and `nonnull` attributes should be added (to the end of the list) where it makes sense. See the `NS_ASSUME_NONNULL_BEGIN/NS_ASSUME_NONNULL_END` macro._
+
+Explicit is much better than implicit when it comes to property semantics.
