@@ -74,3 +74,10 @@ const BOOL canMarkChatAsUnread = (clickedChatOrNil && [self canMarkChatAsUnread:
 ```
 
 Const all the things!
+
+## Take advantage of a static typing
+Everything that may be typed should be typed.
+
+For every `NSViewController` subclass that you have you should re-declare its `representedObject` property type from `id` to some meaningful represented object class. Don't forget to add a `@dynamic representedObject;` to the implementation file.
+
+For every `NSTableCellView` subclass that you have you should re-declare its `objectValue` property type from `id` to some meaningful object value class. Don't forget to add a `@dynamic objectValue;` to the implementation file.
