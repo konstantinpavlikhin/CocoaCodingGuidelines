@@ -67,7 +67,7 @@ NSImage* const image = [NSImage imageNamed: @"NSActionTemplate"];
 const BOOL canMarkChatAsUnread = (clickedChatOrNil && [self canMarkChatAsUnread: clickedChatOrNil]);
 
 // Parameters should be const.
-[RACObserve(self, something) subscribeNext: ^(id* const something)
+[RACObserve(self, something) subscribeNext: ^(id const something)
 {
 	// ...
 }];
