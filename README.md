@@ -241,3 +241,10 @@ It is very important to be able to distinguish between a local variables and an 
   self->_instanceVariable = ...;
 }
 ```
+
+## Designated initializers of a class should be annotated with an `NS_DESIGNATED_INITIALIZER` macro.
+This way the compiler will take the responsibility for maintaining the interrelation of a designated and convenience initializers. It also will check the chaining with a designated initializer of a superclass.
+
+```objective-c
+- (instancetype) initWithSomething: (Something*) something NS_DESIGNATED_INITIALIZER;
+```
