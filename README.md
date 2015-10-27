@@ -169,7 +169,7 @@ Public header should contain only public API of the class. Every implementation 
 ## Poor man's optionals: `objectOrNil`
 Untill the recent introduction of a nullability annotations it always was non-obvious whether you can get a nil instead of a meaningful object from some method (after looking at its signature in a header). The only way determine it was to read the docs.
 
-There is a prevailing opinion that `nils` are dangerous. They were even considered a billion dollar mistake.
+_**Note**: there is a prevailing opinion that `nils` are dangerous. They were even considered a [billion dollar mistake](http://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare)._
 
 Until nullability annotations were added to the Objective-C I had a naming convention that allowed me not to neglect the fact I can get a nil reference at some point.
 
