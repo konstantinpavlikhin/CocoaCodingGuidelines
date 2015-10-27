@@ -248,3 +248,11 @@ This way the compiler will take the responsibility for maintaining the interrela
 ```objective-c
 - (instancetype) initWithSomething: (Something*) something NS_DESIGNATED_INITIALIZER;
 ```
+
+## Mark relevant methods with an `NS_REQUIRES_SUPER` macro
+When you design a class and assume that some of its methods may be a subject for an override in a subclass consider marking them with an `NS_REQUIRES_SUPER` macro if you want your original implementations to be called.
+
+```objective-c
+// MyClass+Private.h
+- (void) suppaDuppaMegaMethodWithParameter: (id) parameter NS_REQUIRES_SUPER;
+```
