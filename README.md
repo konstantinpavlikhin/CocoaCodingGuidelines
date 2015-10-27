@@ -189,3 +189,55 @@ else
 Code is written once, but read and edited multiple times, possibly even by someone of your co-workers. When you write it in a first place you check the docs and examine all possible return values from a method. When time passes and you return to a code to make improvements it is very easy to miss the important details.
 
 Even with nullability annotations it is still a good idea to follow this naming convention. Some may say it is too verbose and to some extent resembles an ugly hungarian notation, but I prefer explicit and obvious when it comes to dealing with nils.
+
+## Instance variables should begin with an underscore `_`
+It is very important to be able to distinguish between a local variables and an instance variables on a visual level. There are at least two unpleasand memory-management problems that may happen because of inattention.
+
+### Problem #1: when you access an ivar in a block, compiler involves an implicit `self`, retaining the latter.
+
+```objective-c
+@implementation ClassName
+{
+  id _instanceVariable;
+}
+
+- (void) setupReactivity
+{
+  @weakify(self);
+
+  // A long-living observer block.
+  [RACObserve(self, someProperty) subscribeNext: ^(id someProperty)
+  {
+    @strongify(self);
+
+    // We've made a weakify/strongify dance and may think that everything is ok.
+
+    // ...but this statement actually references an implicit self that leads to a retain cycle.
+    _instanceVariable = ...;
+
+    // That's why every instance variable should be accessed via an explicit weakified self:
+    self->_instanceVariable = ...;
+  }];
+}
+```
+
+### Problem #2: you will crash if you attempt to dereference a `nill`ed `self`
+
+```objective-c
+
+// Make a weak self.
+@weakify(self);
+
+// Imagine a long-living block.
+^()
+{
+  // Make a local strong self.
+  @strongify(self);
+
+  // Check whether or not we got it.
+  if(!self) return;
+
+  // Here and to the end of a block we have a valid strong self reference.
+  self->_instanceVariable = ...;
+}
+```
