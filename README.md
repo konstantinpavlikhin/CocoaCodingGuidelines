@@ -160,3 +160,8 @@ When you initialize a view in code, pass `NSZeroRect` as a parameter to `-initWi
 ```objective-c
 NSView* const view = [[NSView alloc] initWithFrame: NSZeroRect];`
 ```
+
+## Class files: public header, class extension and implementation
+For a class called `MyClass` these files should be named correspondingly: `MyClass.h`, `MyClass+Private.h` and `MyClass.m`.
+
+Public header should contain only public API of the class. Every implementation detail that needs to be declared in a header should go to a class extension (`readwrite` property redefines, private methods declarations that are subject for override in a subclass and so on...). When making a subclass remember that you need to import a class extension (`MyClass+Private.h`), not a public header.
