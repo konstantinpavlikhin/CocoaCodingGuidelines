@@ -165,3 +165,27 @@ NSView* const view = [[NSView alloc] initWithFrame: NSZeroRect];`
 For a class called `MyClass` these files should be named correspondingly: `MyClass.h`, `MyClass+Private.h` and `MyClass.m`.
 
 Public header should contain only public API of the class. Every implementation detail that needs to be declared in a header should go to a class extension (`readwrite` property redefines, private methods declarations that are subject for override in a subclass and so on...). When making a subclass remember that you need to import a class extension (`MyClass+Private.h`), not a public header.
+
+## Poor man's optionals: `objectOrNil`
+Untill the recent introduction of a nullability annotations it always was non-obvious whether you can get a nil instead of a meaningful object from some method (after looking at its signature in a header). The only way determine it was to read the docs.
+
+There is a prevailing opinion that `nils` are dangerous. They were even considered a billion dollar mistake.
+
+Until nullability annotations were added to the Objective-C I had a naming convention that allowed me not to neglect the fact I can get a nil reference at some point.
+
+```objective-c
+id objectOrNil = <...>
+
+if(objectOrNil)
+{
+  // Got it!
+}
+else
+{
+  // Error!
+}
+```
+
+Code is written once, but read and edited multiple times, possibly even by someone of your co-workers. When you write it in a first place you check the docs and examine all possible return values from a method. When time passes and you return to a code to make improvements it is very easy to miss the important details.
+
+Even with nullability annotations it is still a good idea to follow this naming convention. Some may say it is too verbose and to some extent resembles an ugly hungarian notation, but I prefer explicit and obvious when it comes to dealing with nils.
